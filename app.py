@@ -1,27 +1,37 @@
+from datetime import date
 import os
-from datetime import datetime
 
+def assistant():
+    print("RINDRA - ASSISTANTE IA")
+    print()
+    print(f"Date : {date.today()}")
+    print()
 
-def executer_tache():
-    tache = os.getenv("TASK", "Préparer la liste des tâches du jour")
-    date = datetime.now().strftime("%d/%m/%Y")
+    task = os.getenv("TASK", "")
 
-    resultat = f"""RINDRA - ASSISTANTE IA
-Date : {date}
+    print("TÂCHE REÇUE :")
+    print(task)
+    print()
 
-TÂCHE REÇUE :
-{tache}
+    if task == "Préparer la liste des tâches prioritaires du jour":
+        resultat = """RINDRA - TÂCHES PRIORITAIRES DU JOUR
 
-STATUT :
-Tâche reçue et traitée avec succès.
+1. Vérifier les tâches importantes à accomplir aujourd'hui.
+2. Traiter les tâches urgentes en premier.
+3. Organiser les tâches restantes par ordre de priorité.
+4. Prévoir les tâches à reporter si nécessaire.
 """
 
-    with open("resultat.txt", "w", encoding="utf-8") as fichier:
-        fichier.write(resultat)
+        with open("resultat.txt", "w", encoding="utf-8") as fichier:
+            fichier.write(resultat)
 
-    print(resultat)
-    print("Le fichier resultat.txt a été créé.")
+        print("STATUT :")
+        print("Liste des tâches prioritaires créée avec succès.")
+
+    else:
+        print("STATUT :")
+        print("Tâche reçue mais non reconnue.")
 
 
 if __name__ == "__main__":
-    executer_tache()
+    assistant()
