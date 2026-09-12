@@ -1,28 +1,19 @@
-name: Rindra Assistant
+steps:
+  - name: Récupérer le code
+    uses: actions/checkout@v4
 
-on:
-  workflow_dispatch:
+  - name: Installer Python
+    uses: actions/setup-python@v5
+    with:
+      python-version: "3.12"
 
-jobs:
-  rindra:
-    runs-on: ubuntu-latest
+  - name: Lancer Rindra Assistant
+    env:
+      TASK: "Préparer la liste des tâches prioritaires du jour"
+    run: python app.py
 
-    steps:
-      - name: Récupérer le code
-        uses: actions/checkout@v4
-
-      - name: Installer Python
-        uses: actions/setup-python@v5
-        with:
-          python-version: "3.12"
-
-      - name: Lancer Rindra Assistant
-        env:
-          TASK: "Préparer la liste des tâches prioritaires du jour"
-        run: python app.py
-
-- name: Sauvegarder le résultat
-  uses: actions/upload-artifact@v4
-  with:
-    name: resultat-rindra
-    path: resultat.txt
+  - name: Sauvegarder le résultat
+    uses: actions/upload-artifact@v4
+    with:
+      name: resultat-rindra
+      path: resultat.txt
