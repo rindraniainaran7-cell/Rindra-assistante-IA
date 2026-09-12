@@ -1,0 +1,20 @@
+name: Rindra Assistant
+
+on:
+  workflow_dispatch:
+
+jobs:
+  assistant:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Recuperer le projet
+        uses: actions/checkout@v4
+
+      - name: Installer Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Lancer Rindra Assistant
+        run: python app.py
